@@ -146,4 +146,4 @@ Where:
 **DevOps**: Docker, Docker Compose
 
 ---
-Built with ❤️ for Smart City Innovation
+Built By Aditya Pal (adityapal.vercel.app/) with ❤️ for Smart City Innovation
