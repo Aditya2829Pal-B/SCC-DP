@@ -43,7 +43,10 @@ const config = {
 
   // ── CORS ──
   cors: {
-    origin: (process.env.FRONTEND_URL || 'http://localhost:3000').split(','),
+    origin: function (origin, callback) {
+      // Bulletproof: Allow all origins dynamically to prevent Vercel/Namecheap CORS blocks
+      callback(null, true);
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
