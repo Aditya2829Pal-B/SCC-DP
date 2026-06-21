@@ -1,0 +1,22 @@
+[
+  {"text": "Large pothole on Ring Road near Ashram flyover causing accidents daily", "category": "Road Damage", "location": {"lat": 28.5736, "lng": 77.2456}, "priority": "high"},
+  {"text": "No water supply for 4 days in Vasant Kunj sector B block", "category": "Water Supply", "location": {"lat": 28.5194, "lng": 77.1537}, "priority": "critical"},
+  {"text": "Power outage since yesterday evening in Dwarka Sector 12", "category": "Electricity", "location": {"lat": 28.5921, "lng": 77.0460}, "priority": "high"},
+  {"text": "Garbage overflowing from community dustbin in Saket", "category": "Garbage", "location": {"lat": 28.5244, "lng": 77.2066}, "priority": "medium"},
+  {"text": "Street flooding near AIIMS metro station during light rain", "category": "Flooding", "location": {"lat": 28.5672, "lng": 77.2100}, "priority": "high"},
+  {"text": "Street lights not working in entire Hauz Khas village area", "category": "Street Light", "location": {"lat": 28.5494, "lng": 77.2001}, "priority": "medium"},
+  {"text": "Severe noise from construction work at night in Lajpat Nagar", "category": "Noise Pollution", "location": {"lat": 28.5700, "lng": 77.2400}, "priority": "medium"},
+  {"text": "Open sewer drain overflowing near school in Okhla Phase 2", "category": "Sewage", "location": {"lat": 28.5354, "lng": 77.2711}, "priority": "critical"},
+  {"text": "Road surface completely damaged after monsoon near ITO junction", "category": "Road Damage", "location": {"lat": 28.6289, "lng": 77.2405}, "priority": "high"},
+  {"text": "Contaminated water with bad smell from municipal water supply", "category": "Water Supply", "location": {"lat": 28.6508, "lng": 77.2167}, "priority": "critical"},
+  {"text": "Transformer sparking near residential complex in Rohini Sec 7", "category": "Electricity", "location": {"lat": 28.7158, "lng": 77.1092}, "priority": "critical"},
+  {"text": "Illegal garbage dumping near Yamuna bank creating health hazard", "category": "Garbage", "location": {"lat": 28.6354, "lng": 77.2500}, "priority": "high"},
+  {"text": "Waterlogging in underpass at Pragati Maidan blocking traffic", "category": "Flooding", "location": {"lat": 28.6167, "lng": 77.2500}, "priority": "high"},
+  {"text": "Dark stretch on NH-24 highway causing accidents at night", "category": "Street Light", "location": {"lat": 28.6300, "lng": 77.3200}, "priority": "high"},
+  {"text": "Manhole cover missing on main road in Connaught Place", "category": "Sewage", "location": {"lat": 28.6315, "lng": 77.2167}, "priority": "critical"},
+  {"text": "Water pipeline burst flooding entire street in Karol Bagh", "category": "Water Supply", "location": {"lat": 28.6519, "lng": 77.1902}, "priority": "critical"},
+  {"text": "Multiple potholes on flyover approach road in Nehru Place", "category": "Road Damage", "location": {"lat": 28.5487, "lng": 77.2531}, "priority": "high"},
+  {"text": "Factory emitting toxic smoke without pollution control", "category": "Noise Pollution", "location": {"lat": 28.5400, "lng": 77.3200}, "priority": "high"},
+  {"text": "Drainage system completely blocked causing sewage backup", "category": "Sewage", "location": {"lat": 28.5800, "lng": 77.2300}, "priority": "high"},
+  {"text": "Frequent voltage fluctuation damaging electronic equipment", "category": "Electricity", "location": {"lat": 28.6100, "lng": 77.1800}, "priority": "medium"}
+]

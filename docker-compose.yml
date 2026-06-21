@@ -1,0 +1,69 @@
+version: '3.9'
+
+services:
+  # ── Frontend ──
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+    depends_on:
+      - backend
+
+  # ── Backend API Gateway ──
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/scc_dp
+      - JWT_SECRET=scc_dp_production_secret_key
+      - NLP_SERVICE_URL=http://nlp-service:8001
+      - LSTM_SERVICE_URL=http://lstm-service:8002
+      - RISK_ENGINE_URL=http://risk-engine:8003
+      - FRONTEND_URL=http://localhost:3000
+    depends_on:
+      - mongodb
+      - nlp-service
+      - lstm-service
+      - risk-engine
+
+  # ── NLP Service ──
+  nlp-service:
+    build: ./ml-services/nlp-service
+    ports:
+      - "8001:8001"
+    command: uvicorn main:app --host 0.0.0.0 --port 8001
+
+  # ── LSTM Service ──
+  lstm-service:
+    build: ./ml-services/lstm-service
+    ports:
+      - "8002:8002"
+    command: uvicorn main:app --host 0.0.0.0 --port 8002
+
+  # ── Risk Engine ──
+  risk-engine:
+    build: ./ml-services/risk-engine
+    ports:
+      - "8003:8003"
+    command: uvicorn main:app --host 0.0.0.0 --port 8003
+
+  # ── MongoDB ──
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # ── Redis ──
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo_data:
