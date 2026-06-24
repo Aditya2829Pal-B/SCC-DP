@@ -76,6 +76,14 @@ app.use('/api', apiLimiter);
 // ── CORS ──
 app.use(cors(config.cors));
 
+// ── Disable Browser Caching for API ──
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  next();
+});
+
 // ── Request Logging ──
 app.use(morgan('combined', {
   stream: {
