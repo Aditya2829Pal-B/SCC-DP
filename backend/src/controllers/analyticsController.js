@@ -177,6 +177,27 @@ export const getDashboardOverview = async (req, res, next) => {
     });
 
     return ApiResponse.success(res, {
+      // Flat properties expected by the frontend Dashboards
+      totalComplaints,
+      resolvedComplaints: statusMap['Resolved'] || 0,
+      pendingComplaints: totalComplaints - (statusMap['Resolved'] || 0),
+      avgResolutionTime: `${avgResolutionTime}h`,
+      complaintTrend: [
+        { month: 'Jan', count: 0, resolved: 0 },
+        { month: 'Feb', count: 0, resolved: 0 },
+        { month: 'Mar', count: 0, resolved: 0 },
+        { month: 'Apr', count: 0, resolved: 0 },
+        { month: 'May', count: 0, resolved: 0 },
+        { month: 'Jun', count: totalComplaints, resolved: statusMap['Resolved'] || 0 }
+      ],
+      riskDistribution: {
+        high: (severities['high'] || 0) + (severities['critical'] || 0),
+        medium: severities['medium'] || 0,
+        low: severities['low'] || 0,
+      },
+      complaintsByCategory: categories,
+
+      // Nested properties for backward compatibility
       summary: {
         totalComplaints,
         totalAlerts,
