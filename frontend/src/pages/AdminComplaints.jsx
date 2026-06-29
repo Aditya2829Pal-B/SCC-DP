@@ -249,8 +249,8 @@ export default function AdminComplaints() {
             exit={{ opacity: 0 }}
             style={{
               position: 'fixed', inset: 0, background: 'rgba(5, 5, 15, 0.75)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              zIndex: 1000, padding: '2rem', backdropFilter: 'blur(4px)'
+              display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+              zIndex: 1000, padding: '2rem', backdropFilter: 'blur(4px)', overflowY: 'auto'
             }}
             onClick={() => setSelectedComplaint(null)}
           >
@@ -260,7 +260,7 @@ export default function AdminComplaints() {
               exit={{ scale: 0.95, y: 20 }}
               className="glass-card"
               style={{
-                padding: '2rem', maxWidth: 850, width: '100%', maxHeight: '90vh', overflowY: 'auto',
+                margin: 'auto', padding: '2rem', maxWidth: 850, width: '100%', maxHeight: 'none',
                 background: 'var(--bg-secondary)', borderColor: 'var(--border-light)',
                 display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '2rem'
               }}

@@ -347,9 +347,9 @@ export default function StateDashboard() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{
-              position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              zIndex: 1000, padding: '2rem'
+              position: 'fixed', inset: 0, background: 'rgba(5, 5, 15, 0.75)',
+              display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+              zIndex: 1000, padding: '2rem', backdropFilter: 'blur(4px)', overflowY: 'auto'
             }}
             onClick={() => setSelectedComplaint(null)}
           >
@@ -359,7 +359,7 @@ export default function StateDashboard() {
               exit={{ scale: 0.95, y: 20 }}
               className="glass-card"
               style={{
-                padding: '2rem', maxWidth: 600, width: '100%', maxHeight: '80vh', overflow: 'auto',
+                margin: 'auto', padding: '2rem', maxWidth: 600, width: '100%', maxHeight: 'none',
                 background: 'var(--bg-secondary)', borderColor: 'var(--border-light)'
               }}
               onClick={(e) => e.stopPropagation()}
