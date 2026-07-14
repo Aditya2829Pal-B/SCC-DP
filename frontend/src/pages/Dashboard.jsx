@@ -38,7 +38,7 @@ export default function Dashboard() {
   async function loadDashboard() {
     try {
       const [analyticsRes, predRes, riskRes, alertRes] = await Promise.all([
-        dataService.getAnalytics(),
+        dataService.getAnalytics(user?._id),
         dataService.getPredictions(),
         dataService.getUserRisk(user?._id),
         dataService.getAlerts(user?._id),
@@ -158,7 +158,7 @@ export default function Dashboard() {
       </div>
 
       {/* ── Row: Chart + Risk Score ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+      <div className="grid-layout-main" style={{ marginBottom: '2rem' }}>
         {/* Trend Chart */}
         <motion.div
           className="glass-card"
@@ -227,7 +227,7 @@ export default function Dashboard() {
       </div>
 
       {/* ── Row: Predictions + Alerts ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
+      <div className="grid-2" style={{ marginBottom: '2rem' }}>
         {/* Disaster Predictions */}
         <motion.div
           className="glass-card"

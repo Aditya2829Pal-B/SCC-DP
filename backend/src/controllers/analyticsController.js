@@ -24,6 +24,8 @@ function isMockMode() {
  */
 export const getDashboardOverview = async (req, res, next) => {
   try {
+    const { userId } = req.query;
+    const complaintFilter = userId ? { userId } : {};
     if (isMockMode()) {
       return ApiResponse.success(res, {
         summary: {
@@ -66,6 +68,10 @@ export const getDashboardOverview = async (req, res, next) => {
       }, 'Dashboard overview retrieved successfully (Mock Mode)');
     }
 
+    // Determine filter for average resolution time
+    const avgTimeFilter = { status: 'Resolved', updatedAt: { $exists: true } };
+    if (userId) avgTimeFilter.userId = userId;
+
     // Fetch statistics in parallel
     const [
       totalComplaints,
@@ -79,15 +85,17 @@ export const getDashboardOverview = async (req, res, next) => {
       avgResolutionTime,
     ] = await Promise.all([
       // Total complaints
-      Complaint.countDocuments(),
+      Complaint.countDocuments(complaintFilter),
 
       // Complaints by status
       Complaint.aggregate([
+        { $match: complaintFilter },
         { $group: { _id: '$status', count: { $sum: 1 } } },
       ]),
 
       // Complaints by category
       Complaint.aggregate([
+        { $match: complaintFilter },
         { $group: { _id: '$category', count: { $sum: 1 } } },
         { $sort: { count: -1 } },
         { $limit: 10 },
@@ -95,6 +103,7 @@ export const getDashboardOverview = async (req, res, next) => {
 
       // Complaints by priority
       Complaint.aggregate([
+        { $match: complaintFilter },
         { $group: { _id: '$priority', count: { $sum: 1 } } },
       ]),
 
@@ -111,6 +120,7 @@ export const getDashboardOverview = async (req, res, next) => {
 
       // Resolution rate (Resolved / Total * 100)
       Complaint.aggregate([
+        { $match: complaintFilter },
         {
           $facet: {
             total: [{ $count: 'count' }],
@@ -128,7 +138,7 @@ export const getDashboardOverview = async (req, res, next) => {
 
       // Average resolution time (hours)
       Complaint.aggregate([
-        { $match: { status: 'Resolved', updatedAt: { $exists: true } } },
+        { $match: avgTimeFilter },
         {
           $project: {
             resolutionTime: {

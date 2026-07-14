@@ -395,17 +395,19 @@ textarea.form-input {
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+.grid-layout-main { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-lg); }
 
 @media (max-width: 1200px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-layout-main { grid-template-columns: 1.5fr 1fr; }
 }
 
 @media (max-width: 768px) {
-  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .grid-4, .grid-3, .grid-2, .grid-layout-main { grid-template-columns: 1fr; }
   .sidebar { transform: translateX(-100%); }
   .sidebar.open { transform: translateX(0); }
-  .main-content { margin-left: 0; padding: var(--space-md); }
+  .main-content { margin-left: 0; padding: var(--space-md); padding-top: 4rem; }
 }
 
 /* ── Table ── */

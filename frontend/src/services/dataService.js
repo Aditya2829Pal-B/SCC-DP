@@ -91,10 +91,10 @@ const dataService = {
     ),
 
   // ── Analytics (Admin) ──
-  getAnalytics: () =>
+  getAnalytics: (userId) =>
     tryApiOrMock(
-      () => api.get('/analytics/overview'),
-      () => mockAPI.getAnalytics()
+      () => api.get('/analytics/overview', { params: { userId } }),
+      () => mockAPI.getAnalytics(userId)
     ),
 
   // ── Risk Score ──
