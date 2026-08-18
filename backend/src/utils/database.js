@@ -39,10 +39,8 @@ export async function connectDB() {
       logger.warn(`❌ MongoDB connection failed. Retrying in ${RETRY_DELAY / 1000}s...`, { error: err.message });
 
       if (retries >= MAX_RETRIES) {
-        logger.error('❌ Failed to connect to MongoDB after maximum retries', { error: err.message });
-        if (config.isProd) {
-          process.exit(1);
-        }
+        logger.error('❌ Failed to connect to MongoDB after maximum initial retries. Continuing in background...', { error: err.message });
+        scheduleBackgroundReconnect();
         break;
       }
 
@@ -50,12 +48,53 @@ export async function connectDB() {
     }
   }
 
-  if (!isConnected && !config.isProd) {
-    logger.warn('⚠️  Running in mock mode (no database)');
-  }
-
   return mongoose.connection;
 }
+
+let reconnectTimer = null;
+function scheduleBackgroundReconnect() {
+  if (reconnectTimer || isConnected) return;
+
+  reconnectTimer = setInterval(async () => {
+    if (isConnected || mongoose.connection.readyState === 1) {
+      clearInterval(reconnectTimer);
+      reconnectTimer = null;
+      return;
+    }
+
+    try {
+      logger.info('🔄 Attempting background MongoDB reconnection...');
+      await mongoose.connect(config.mongo.uri, {
+        maxPoolSize: config.mongo.poolSize,
+        serverSelectionTimeoutMS: config.mongo.timeout,
+        socketTimeoutMS: config.mongo.timeout,
+        family: 4,
+        retryWrites: config.mongo.retryWrites,
+        w: config.mongo.w,
+      });
+
+      isConnected = true;
+      logger.info('✅ Background MongoDB reconnection successful!');
+      clearInterval(reconnectTimer);
+      reconnectTimer = null;
+    } catch (err) {
+      logger.warn(`⏳ Background reconnection attempt failed: ${err.message}`);
+    }
+  }, 5000);
+}
+
+// Event listeners for auto-recovery
+mongoose.connection.on('disconnected', () => {
+  isConnected = false;
+  logger.warn('⚠️ MongoDB disconnected. Triggering background auto-reconnect...');
+  scheduleBackgroundReconnect();
+});
+
+mongoose.connection.on('error', (err) => {
+  isConnected = false;
+  logger.error('⚠️ MongoDB connection error:', { error: err.message });
+  scheduleBackgroundReconnect();
+});
 
 export async function disconnectDB() {
   if (isConnected) {
