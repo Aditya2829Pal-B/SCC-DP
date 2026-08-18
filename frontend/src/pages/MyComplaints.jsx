@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -93,8 +94,11 @@ export default function MyComplaints() {
       ) : filteredComplaints.length === 0 ? (
         <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
           <FiAlertCircle size={48} style={{ color: 'var(--text-muted)', marginBottom: '1rem' }} />
-          <h3>No complaints found</h3>
-          <p>Try changing the filter or submit a new complaint</p>
+          <h3 style={{ marginBottom: '0.5rem' }}>No complaints found</h3>
+          <p style={{ marginBottom: '1.5rem' }}>Try changing the filter or submit a new complaint to track its status.</p>
+          <Link to="/complaints/new" className="btn btn-primary btn-sm">
+            Submit a New Complaint
+          </Link>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -193,9 +197,9 @@ export default function MyComplaints() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{
-              position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              zIndex: 1000, padding: '2rem',
+              position: 'fixed', inset: 0, background: 'rgba(5, 5, 15, 0.75)',
+              display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+              zIndex: 1000, padding: '2rem', backdropFilter: 'blur(4px)', overflowY: 'auto'
             }}
             onClick={() => setSelectedComplaint(null)}
           >
@@ -205,7 +209,7 @@ export default function MyComplaints() {
               exit={{ scale: 0.95, y: 20 }}
               className="glass-card"
               style={{
-                padding: '2rem', maxWidth: 600, width: '100%', maxHeight: '80vh', overflow: 'auto',
+                margin: 'auto', padding: '2rem', maxWidth: 600, width: '100%', maxHeight: 'none',
                 background: 'var(--bg-secondary)', borderColor: 'var(--border-light)',
               }}
               onClick={(e) => e.stopPropagation()}

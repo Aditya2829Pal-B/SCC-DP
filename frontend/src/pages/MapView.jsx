@@ -58,7 +58,7 @@ export default function MapView() {
         <p>Interactive map showing risk zones, complaints, and disaster predictions</p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '1.5rem' }}>
+      <div className="grid-sidebar-map">
         {/* Map */}
         <motion.div
           className="glass-card"

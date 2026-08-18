@@ -177,7 +177,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Row 2: Trends + Resolution Ring + Risk */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+      <div className="grid-3-col" style={{ marginBottom: '1.5rem' }}>
         {/* Monthly Trends */}
         <motion.div className="glass-card" style={{ padding: '1.5rem' }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
           <h3 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
@@ -243,7 +243,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Row 3: Category Bar + Radar + Activity Feed */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr', gap: '1.5rem' }}>
+      <div className="grid-3-even">
         {/* Category Distribution */}
         <motion.div className="glass-card" style={{ padding: '1.5rem' }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
           <h3 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9375rem' }}>

@@ -186,7 +186,7 @@ export default function AdminHeatmap() {
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '1.5rem' }}>
+      <div className="grid-sidebar">
         {/* Heatmap */}
         <motion.div
           className="glass-card"

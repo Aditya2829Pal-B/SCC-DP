@@ -228,6 +228,18 @@ async function startServer() {
       });
       logger.info(`📋 API Docs: http://localhost:${config.port}/api`);
       logger.info(`💚 Health: http://localhost:${config.port}/health`);
+
+      // ── Self-Ping Keep-Alive Worker (Every 5 minutes) ──
+      const keepAliveUrl = process.env.RENDER_EXTERNAL_URL || 'https://scc-dp.onrender.com';
+      const KEEP_ALIVE_INTERVAL = 5 * 60 * 1000;
+      setInterval(async () => {
+        try {
+          const res = await fetch(`${keepAliveUrl}/health`);
+          logger.debug(`[KeepAlive] Ping status: ${res.status}`);
+        } catch (err) {
+          logger.warn(`[KeepAlive] Ping failed: ${err.message}`);
+        }
+      }, KEEP_ALIVE_INTERVAL);
     });
 
     // ── Graceful Shutdown ──

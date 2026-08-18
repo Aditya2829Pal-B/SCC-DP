@@ -57,6 +57,21 @@ function AppLayout({ children }) {
 }
 
 export default function App() {
+  React.useEffect(() => {
+    const pingBackend = () => {
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://scc-dp.onrender.com/api';
+      const rootUrl = apiUrl.replace(/\/api\/?$/, '');
+      fetch(`${rootUrl}/health`).catch(() => {});
+    };
+    
+    // Immediate ping on app load
+    pingBackend();
+    
+    // Ping every 4 minutes to keep Render alive while user is browsing
+    const interval = setInterval(pingBackend, 4 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Routes>
       {/* Public Routes */}

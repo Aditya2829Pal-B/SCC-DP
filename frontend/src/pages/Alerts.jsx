@@ -40,7 +40,7 @@ export default function Alerts() {
   return (
     <div className="animate-fade-in">
       <div className="page-header"><h1>Alerts & Notifications</h1><p>Personalized alerts based on your location and risk profile</p></div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '1.5rem' }}>
+      <div className="grid-sidebar">
         <div>
           <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
             {['all', 'unread', 'high', 'medium', 'low'].map(f => (
@@ -50,7 +50,13 @@ export default function Alerts() {
             ))}
           </div>
           {loading ? <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>{[1,2,3].map(i => <div key={i} className="skeleton" style={{ height: 100, borderRadius: '1rem' }} />)}</div>
-          : filteredAlerts.length === 0 ? <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}><FiCheckCircle size={48} style={{ color: 'var(--success-400)', marginBottom: '1rem' }} /><h3>All Clear!</h3></div>
+          : filteredAlerts.length === 0 ? (
+            <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
+              <FiCheckCircle size={48} style={{ color: 'var(--success-400)', marginBottom: '1rem' }} />
+              <h3 style={{ marginBottom: '0.5rem' }}>All Clear!</h3>
+              <p>No active alerts matching your current filter. Your area is currently safe.</p>
+            </div>
+          )
           : <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {filteredAlerts.map((alert, i) => { const Ic = alertIcons[alert.type] || alertIcons.default; const sc = sevColors[alert.severity] || sevColors.medium; return (
               <motion.div key={alert.id} className="glass-card" style={{ padding: '1.25rem', borderLeft: `3px solid ${sc.border}`, opacity: alert.read ? 0.7 : 1 }} initial={{ opacity: 0, x: -10 }} animate={{ opacity: alert.read ? 0.7 : 1, x: 0 }} transition={{ delay: i * 0.05 }}>

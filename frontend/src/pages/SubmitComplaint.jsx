@@ -220,7 +220,7 @@ export default function SubmitComplaint() {
         <p>Report an issue in your area — our AI will classify and prioritize it automatically</p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+      <div className="grid-2">
         {/* Form */}
         <motion.div
           className="glass-card"
