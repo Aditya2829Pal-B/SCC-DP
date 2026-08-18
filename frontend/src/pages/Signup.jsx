@@ -19,17 +19,26 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !email || !password) {
-      toast.error('Please fill in all fields');
+    if (!name.trim() || !email.trim() || !password) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters long');
       return;
     }
     setLoading(true);
     try {
-      await signup(name, email, password, { city });
+      await signup(name.trim(), email.trim(), password, { city });
       toast.success('Account created successfully!');
       navigate('/dashboard');
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Signup failed');
+      const errorMsg =
+        err.response?.data?.message ||
+        (err.response?.data?.details && err.response?.data?.details[0]?.message) ||
+        err.message ||
+        'Signup failed. Please try again.';
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -78,8 +87,9 @@ export default function Signup() {
             <label className="form-label" htmlFor="signup-password">Password</label>
             <div style={{ position: 'relative' }}>
               <FiLock style={{ position: 'absolute', left: '0.875rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-              <input id="signup-password" type="password" className="form-input" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ paddingLeft: '2.75rem' }} />
+              <input id="signup-password" type="password" className="form-input" placeholder="At least 6 characters" value={password} onChange={(e) => setPassword(e.target.value)} style={{ paddingLeft: '2.75rem' }} />
             </div>
+            <span style={{ fontSize: '0.6875rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>Minimum 6 characters</span>
           </div>
 
           <div className="form-group" style={{ marginTop: '1rem' }}>

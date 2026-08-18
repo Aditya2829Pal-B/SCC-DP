@@ -16,11 +16,8 @@ export const validators = {
 
   // Password validation
   password: (value) => {
-    if (value.length < 8) {
-      throw new ValidationError('Password must be at least 8 characters');
-    }
-    if (!/[A-Z]/.test(value) || !/[0-9]/.test(value)) {
-      throw new ValidationError('Password must contain uppercase letter and number');
+    if (!value || typeof value !== 'string' || value.length < 6) {
+      throw new ValidationError('Password must be at least 6 characters');
     }
     return value;
   },
