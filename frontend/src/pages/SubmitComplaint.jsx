@@ -13,6 +13,8 @@ import { COMPLAINT_CATEGORIES, COMPLAINT_TITLE_SUGGESTIONS, AREA_NAMES } from '.
 import VisualRoutingFlow from '../components/VisualRoutingFlow';
 
 // Fix Leaflet default icon issue
+import Confetti from 'react-confetti';
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
@@ -121,6 +123,13 @@ export default function SubmitComplaint() {
   if (submitted && result) {
     return (
       <div className="animate-fade-in">
+        <Confetti 
+          width={window.innerWidth} 
+          height={window.innerHeight} 
+          recycle={false}
+          numberOfPieces={400}
+          gravity={0.15}
+        />
         <div className="page-header">
           <h1>Complaint Submitted</h1>
           <p>Your complaint has been received and classified by our AI system</p>

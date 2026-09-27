@@ -226,6 +226,53 @@ export default function Dashboard() {
         </motion.div>
       </div>
 
+      {/* ── Civic Karma & Gamification (Engagement Attraction) ── */}
+      <motion.div
+        className="glass-card"
+        style={{ padding: '1.5rem', marginBottom: '2rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '2rem' }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.45 }}
+      >
+        <div style={{ flex: '1', minWidth: '300px' }}>
+          <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fff' }}>
+            <span style={{ fontSize: '2rem' }}>🏆</span> Civic Karma Level
+          </h3>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+            You are a <strong>Top 5% Contributor</strong> in your locality. Earn points by reporting civic issues and helping authorities predict disasters.
+          </p>
+          
+          {/* Progress Bar */}
+          <div style={{ position: 'relative', width: '100%', height: '8px', background: 'rgba(255,255,255,0.1)', borderRadius: '4px', marginBottom: '0.5rem' }}>
+            <div style={{ 
+              position: 'absolute', top: 0, left: 0, height: '100%', width: '75%', 
+              background: 'linear-gradient(90deg, var(--primary-500), var(--accent-400))', 
+              borderRadius: '4px', boxShadow: '0 0 10px var(--primary-400)' 
+            }} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+            <span>Level 4: Civic Guardian</span>
+            <span>2,450 / 3,000 XP</span>
+          </div>
+        </div>
+
+        {/* Badges */}
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(99,102,241,0.1)', borderRadius: '1rem', border: '1px solid var(--border-subtle)' }}>
+            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>💧</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary-300)' }}>Water Saver</div>
+          </div>
+          <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(245,158,11,0.1)', borderRadius: '1rem', border: '1px solid rgba(245,158,11,0.2)' }}>
+            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🔥</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fcd34d' }}>Heatwave Hero</div>
+          </div>
+          <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(34,197,94,0.1)', borderRadius: '1rem', border: '1px solid rgba(34,197,94,0.2)' }}>
+            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🛣️</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#86efac' }}>Road Scout</div>
+          </div>
+        </div>
+      </motion.div>
+
       {/* ── Row: Predictions + Alerts ── */}
       <div className="grid-2" style={{ marginBottom: '2rem' }}>
         {/* Disaster Predictions */}
