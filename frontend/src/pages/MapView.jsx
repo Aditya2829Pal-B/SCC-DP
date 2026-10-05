@@ -6,14 +6,6 @@ import { FiFilter, FiLayers, FiAlertTriangle, FiMapPin, FiInfo } from 'react-ico
 import dataService from '../services/dataService';
 import { getRiskLevel, truncate } from '../utils/helpers';
 
-// Fix Leaflet icons
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-});
-
 export default function MapView() {
   const [riskZones, setRiskZones] = useState([]);
   const [complaints, setComplaints] = useState([]);
@@ -68,9 +60,9 @@ export default function MapView() {
         >
           {!loading && (
             <MapContainer
+              style={{ height: "60vh", minHeight: "500px", width: "100%", zIndex: 1, borderRadius: "1rem" }}
               center={[28.6139, 77.2090]}
               zoom={11}
-              style={{ height: '100%', width: '100%', minHeight: 550 }}
             >
               <TileLayer
                 url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"

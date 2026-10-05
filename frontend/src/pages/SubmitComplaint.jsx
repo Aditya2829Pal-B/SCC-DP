@@ -12,15 +12,7 @@ import Autocomplete from '../components/Autocomplete';
 import { COMPLAINT_CATEGORIES, COMPLAINT_TITLE_SUGGESTIONS, AREA_NAMES } from '../utils/autocompleteSuggestions';
 import VisualRoutingFlow from '../components/VisualRoutingFlow';
 
-// Fix Leaflet default icon issue
 import Confetti from 'react-confetti';
-
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-});
 
 // Click handler component for map
 function LocationPicker({ onLocationSelect }) {
@@ -341,7 +333,7 @@ export default function SubmitComplaint() {
             <MapContainer
               center={[28.6139, 77.2090]}
               zoom={12}
-              style={{ height: '100%', width: '100%' }}
+              style={{ height: '450px', width: '100%', zIndex: 1, borderRadius: '0.75rem' }}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org">OSM</a>'
