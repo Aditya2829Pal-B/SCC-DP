@@ -2,7 +2,6 @@
 
 SCC&DP is a web application for submitting and managing civic complaints, viewing complaint and risk information on maps, and presenting disaster-related guidance. The repository contains a React frontend, an Express API, MongoDB models, and three Python FastAPI services. Some UI data and backend ML paths use mock or deterministic fallback behavior; see [Implementation notes](#implementation-notes) before interpreting predictions as operational forecasts.
 
-- Live frontend: [scc-dp.vercel.app](https://scc-dp.vercel.app/)
 - Repository: [Aditya2829Pal-B/SCC-DP](https://github.com/Aditya2829Pal-B/SCC-DP)
 
 ## Contents
@@ -232,6 +231,32 @@ These notes distinguish files and code paths that are present from behavior that
 - Use HTTPS and review authentication, authorization, rate limits, and data retention for a public deployment.
 - Treat risk scores and route guidance as prototype outputs until validated with real data, domain review, and appropriate operational safeguards.
 - The repository includes scripts and test configuration, but this README does not claim a test or deployment run was performed.
+
+## Resources and references
+
+Links below were checked on 24 November 2026.
+
+### Project source
+
+- [SCC&DP GitHub repository](https://github.com/Aditya2829Pal-B/SCC-DP)
+- [Backend ML client](https://github.com/Aditya2829Pal-B/SCC-DP/blob/main/backend/src/services/mlService.js)
+- [Python NLP service](https://github.com/Aditya2829Pal-B/SCC-DP/blob/main/ml-services/nlp-service/main.py)
+- [Python weather prediction service](https://github.com/Aditya2829Pal-B/SCC-DP/blob/main/ml-services/lstm-service/main.py)
+- [Python risk engine](https://github.com/Aditya2829Pal-B/SCC-DP/blob/main/ml-services/risk-engine/main.py)
+- [MongoDB models](https://github.com/Aditya2829Pal-B/SCC-DP/blob/main/backend/src/models/index.js)
+
+### Official documentation and research
+
+- [React Quick Start](https://react.dev/learn)
+- [Vite Getting Started](https://vite.dev/guide/)
+- [Express 4.x API reference](https://expressjs.com/en/4x/api/)
+- [FastAPI documentation](https://fastapi.tiangolo.com/)
+- [Hugging Face Transformers Pipelines](https://huggingface.co/docs/transformers/main/en/main_classes/pipelines)
+- [mDeBERTa-v3-base-mnli-xnli model card](https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli)
+- [OpenAI Chat API reference](https://developers.openai.com/api/reference/resources/chat)
+- [MongoDB 2dsphere indexes](https://www.mongodb.com/docs/manual/core/indexes/index-types/geospatial/2dsphere/)
+- [RFC 7946: The GeoJSON Format](https://www.rfc-editor.org/rfc/rfc7946)
+- [He, Gao, and Chen, DeBERTaV3 paper](https://arxiv.org/abs/2111.09543)
 
 ## License
 
